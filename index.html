@@ -88,18 +88,20 @@ nav{
 .status-dot{width:7px;height:7px;background:var(--a3);border-radius:50%;animation:pulse 2s infinite;}
 @keyframes pulse{0%,100%{opacity:1;box-shadow:0 0 0 0 rgba(26,170,128,.4);}50%{opacity:.7;box-shadow:0 0 0 6px rgba(26,170,128,0);}}
 
-.avatar{
-  width:110px;height:110px;border-radius:50%;margin:0 auto 1.75rem;
+.avatar-wrap{position:relative;width:120px;height:120px;margin:0 auto;}
+.avatar-ring{
+  position:absolute;inset:-4px;border-radius:50%;
   background:linear-gradient(135deg,var(--a1),var(--a2),var(--a4));
-  display:flex;align-items:center;justify-content:center;
-  font-family:'Space Grotesk',sans-serif;font-size:2.2rem;font-weight:800;color:white;
-  box-shadow:0 0 0 3px rgba(74,114,196,.15),0 0 40px var(--glow1);
-  position:relative;
+  animation:spin 6s linear infinite;
+  -webkit-mask:radial-gradient(farthest-side,transparent calc(100% - 3px),#fff calc(100% - 3px));
+  mask:radial-gradient(farthest-side,transparent calc(100% - 3px),#fff calc(100% - 3px));
 }
-.avatar::after{
-  content:'';position:absolute;inset:-4px;border-radius:50%;
-  background:linear-gradient(135deg,var(--a1),var(--a2),var(--a4));
-  z-index:-1;filter:blur(12px);opacity:.3;
+@keyframes spin{to{transform:rotate(360deg);}}
+.avatar-img{
+  width:120px;height:120px;border-radius:50%;object-fit:cover;
+  border:3px solid var(--bg);
+  box-shadow:0 0 32px var(--glow1);
+  display:block;
 }
 
 .hero h1{
@@ -331,8 +333,13 @@ footer a:hover{color:var(--a3);}
   <div class="orb orb2"></div>
   <div class="orb orb3"></div>
   <div class="hero-inner">
-    <div class="status-pill"><span class="status-dot"></span> Open to new opportunities</div>
-    <img src="grad.JPG" alt="Mohan Kumar" style="width:110px;height:110px;border-radius:50%;object-fit:cover;border:3px solid white;box-shadow:0 0 40px rgba(74,114,196,0.3);">
+    <div style="display:flex;flex-direction:column;align-items:center;gap:1.25rem;margin-bottom:1.75rem;">
+      <div class="status-pill" style="margin-bottom:0;"><span class="status-dot"></span> Open to new opportunities</div>
+      <div class="avatar-wrap">
+        <div class="avatar-ring"></div>
+        <img src="grad.JPG" alt="Mohan Kumar" class="avatar-img">
+      </div>
+    </div>
     <h1>Mohan Kumar<br><span class="grad">AI / ML Engineer</span></h1>
     <div class="hero-role">Multimodal Systems &amp; Applied Research Innovation</div>
     <div class="hero-loc">
