@@ -302,12 +302,94 @@ footer a{color:var(--a1);text-decoration:none;font-weight:500;}
 footer a:hover{color:var(--a3);}
 .footer-links{display:flex;justify-content:center;gap:1.5rem;margin-bottom:.75rem;flex-wrap:wrap;}
 
-@media(max-width:640px){
-  nav{padding:0 1rem;}
-  .nav-links{gap:1rem;}
-  .nav-links a{font-size:.75rem;}
-  .hero-stats{gap:1.5rem;}
-  .pub{flex-direction:column;}
+/* ── MOBILE RESPONSIVE ── */
+
+/* Hamburger button */
+.nav-toggle{
+  display:none;flex-direction:column;justify-content:center;gap:5px;
+  background:none;border:none;cursor:pointer;padding:.4rem;z-index:200;
+}
+.nav-toggle span{
+  display:block;width:22px;height:2px;
+  background:var(--text);border-radius:2px;
+  transition:transform .3s,opacity .3s;
+}
+.nav-toggle.open span:nth-child(1){transform:translateY(7px) rotate(45deg);}
+.nav-toggle.open span:nth-child(2){opacity:0;}
+.nav-toggle.open span:nth-child(3){transform:translateY(-7px) rotate(-45deg);}
+
+@media(max-width:768px){
+  /* NAV */
+  nav{padding:0 1.25rem;position:relative;}
+  .nav-toggle{display:flex;}
+  .nav-links{
+    display:none;flex-direction:column;gap:0;
+    position:absolute;top:62px;left:0;right:0;
+    background:rgba(232,237,243,0.98);backdrop-filter:blur(20px);
+    border-bottom:1px solid var(--border);
+    padding:.5rem 0;z-index:100;
+  }
+  .nav-links.open{display:flex;}
+  .nav-links li{width:100%;}
+  .nav-links a{
+    display:block;padding:.75rem 1.5rem;font-size:.9rem;
+    text-transform:uppercase;letter-spacing:.04em;
+    border-bottom:1px solid var(--border);
+  }
+  .nav-links li:last-child a{border-bottom:none;}
+
+  /* HERO */
+  .hero{padding:5rem 1.25rem 3rem;min-height:auto;}
+  .hero h1{font-size:2rem;}
+  .hero-role{font-size:.95rem;}
+  .hero-loc{font-size:.8rem;gap:.5rem;flex-direction:column;align-items:center;}
+  .hero-stats{gap:1.25rem;}
+  .stat-num{font-size:1.35rem;}
+  .stat-label{font-size:.68rem;}
+  .hero-tags{gap:.45rem;}
+  .htag{font-size:.73rem;padding:.25rem .7rem;}
+  .hero-cta{flex-direction:column;align-items:center;}
+  .btn{width:220px;justify-content:center;}
+
+  /* SECTIONS */
+  .sw{padding:3rem 1.25rem;}
+  .st{font-size:1.5rem;}
+
+  /* ABOUT */
+  .about-lead{font-size:.95rem;padding:1.1rem;}
+  .about-cards{grid-template-columns:1fr 1fr;}
+
+  /* TIMELINE */
+  .timeline{padding-left:1.5rem;}
+  .ei::before{left:-1.88rem;}
+  .ec{padding:1.1rem;}
+  .ec-header{flex-direction:column;gap:.4rem;}
+  .metrics{gap:.4rem;}
+
+  /* PROJECTS */
+  .pg{grid-template-columns:1fr;}
+
+  /* PUBLICATION */
+  .pub{flex-direction:column;gap:1rem;padding:1.25rem;}
+
+  /* SKILLS */
+  .skills-grid{grid-template-columns:1fr 1fr;}
+
+  /* EDUCATION */
+  .edu-grid{grid-template-columns:1fr;}
+
+  /* CONTACT */
+  .contact-strip{padding:2rem 1.25rem;}
+  .contact-strip h2{font-size:1.4rem;}
+  .contact-btns{flex-direction:column;align-items:center;}
+  .contact-btns .btn{width:220px;justify-content:center;}
+}
+
+@media(max-width:420px){
+  .about-cards{grid-template-columns:1fr;}
+  .skills-grid{grid-template-columns:1fr;}
+  .hero-stats{gap:1rem;}
+  .stat{min-width:70px;}
 }
 </style>
 </head>
@@ -316,7 +398,10 @@ footer a:hover{color:var(--a3);}
 <!-- NAV -->
 <nav>
   <div class="nav-logo">MK</div>
-  <ul class="nav-links">
+  <button class="nav-toggle" id="navToggle" aria-label="Toggle menu">
+    <span></span><span></span><span></span>
+  </button>
+  <ul class="nav-links" id="navLinks">
     <li><a href="#about">About</a></li>
     <li><a href="#experience">Experience</a></li>
     <li><a href="#projects">Projects</a></li>
@@ -649,5 +734,19 @@ footer a:hover{color:var(--a3);}
   <p>© 2025 Mohan Kumar · AI/ML Engineer · San Jose, CA</p>
 </footer>
 
+<script>
+  const toggle = document.getElementById('navToggle');
+  const links = document.getElementById('navLinks');
+  toggle.addEventListener('click', () => {
+    toggle.classList.toggle('open');
+    links.classList.toggle('open');
+  });
+  links.querySelectorAll('a').forEach(a => {
+    a.addEventListener('click', () => {
+      toggle.classList.remove('open');
+      links.classList.remove('open');
+    });
+  });
+</script>
 </body>
 </html>
