@@ -1,177 +1,646 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Mohan Kumar - AI Engineer</title>
-    <link rel="stylesheet" href="style.css">
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Mohan Kumar — AI/ML Engineer</title>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&family=Space+Grotesk:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+<style>
+:root {
+  --bg: #e8edf3;
+  --card: #f2f5f9;
+  --card2: #dde3ec;
+  --border: rgba(100,120,160,0.15);
+  --text: #1e2a3a;
+  --muted: #5a6a80;
+  --a1: #4a72c4;
+  --a2: #e05c8a;
+  --a3: #1aaa80;
+  --a4: #d4900a;
+  --a5: #2d8fbf;
+  --glow1: rgba(74,114,196,0.18);
+  --glow2: rgba(224,92,138,0.14);
+  --glow3: rgba(26,170,128,0.14);
+  --r: 16px;
+}
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0;}
+html{scroll-behavior:smooth;}
+body{font-family:'Inter',sans-serif;background:var(--bg);color:var(--text);line-height:1.7;overflow-x:hidden;}
+
+::-webkit-scrollbar{width:6px;}
+::-webkit-scrollbar-track{background:var(--bg);}
+::-webkit-scrollbar-thumb{background:var(--a1);border-radius:99px;}
+
+body::before{
+  content:'';position:fixed;inset:0;
+  background-image:url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.65' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)' opacity='0.025'/%3E%3C/svg%3E");
+  pointer-events:none;z-index:0;opacity:.3;
+}
+
+/* NAV */
+nav{
+  position:sticky;top:0;z-index:100;
+  background:rgba(232,237,243,0.88);backdrop-filter:blur(20px);
+  border-bottom:1px solid var(--border);
+  display:flex;justify-content:space-between;align-items:center;
+  padding:0 2.5rem;height:62px;
+}
+.nav-logo{
+  font-family:'Space Grotesk',sans-serif;font-weight:800;font-size:1.1rem;
+  background:linear-gradient(90deg,var(--a1),var(--a2));
+  -webkit-background-clip:text;-webkit-text-fill-color:transparent;
+  letter-spacing:-.02em;
+}
+.nav-links{display:flex;gap:1.75rem;list-style:none;}
+.nav-links a{
+  text-decoration:none;color:var(--muted);font-size:.82rem;font-weight:500;
+  letter-spacing:.04em;text-transform:uppercase;transition:color .2s;
+}
+.nav-links a:hover{color:var(--text);}
+
+/* HERO */
+.hero{
+  min-height:100vh;display:flex;align-items:center;justify-content:center;
+  padding:6rem 2rem;text-align:center;position:relative;overflow:hidden;
+  background:linear-gradient(160deg,#dce4f0 0%,#e8edf3 40%,#d8e8f0 100%);
+}
+.hero-bg{
+  position:absolute;inset:0;
+  background:
+    radial-gradient(ellipse 60% 50% at 20% 40%,rgba(74,114,196,.12) 0%,transparent 60%),
+    radial-gradient(ellipse 50% 40% at 80% 30%,rgba(224,92,138,.08) 0%,transparent 55%),
+    radial-gradient(ellipse 50% 50% at 60% 80%,rgba(26,170,128,.09) 0%,transparent 55%);
+}
+.orb{position:absolute;border-radius:50%;filter:blur(70px);animation:float 8s ease-in-out infinite;}
+.orb1{width:320px;height:320px;background:rgba(74,114,196,.15);top:-80px;left:-80px;animation-delay:0s;}
+.orb2{width:260px;height:260px;background:rgba(224,92,138,.1);bottom:40px;right:-60px;animation-delay:3s;}
+.orb3{width:220px;height:220px;background:rgba(26,170,128,.1);bottom:20%;left:60%;animation-delay:5s;}
+@keyframes float{0%,100%{transform:translateY(0) scale(1);}50%{transform:translateY(-20px) scale(1.05);}}
+
+.hero-inner{position:relative;max-width:750px;}
+.status-pill{
+  display:inline-flex;align-items:center;gap:.5rem;
+  background:rgba(26,170,128,0.1);border:1px solid rgba(26,170,128,.3);
+  color:var(--a3);font-size:.78rem;font-weight:600;letter-spacing:.05em;
+  padding:.35rem 1rem;border-radius:999px;margin-bottom:2rem;
+  text-transform:uppercase;
+}
+.status-dot{width:7px;height:7px;background:var(--a3);border-radius:50%;animation:pulse 2s infinite;}
+@keyframes pulse{0%,100%{opacity:1;box-shadow:0 0 0 0 rgba(26,170,128,.4);}50%{opacity:.7;box-shadow:0 0 0 6px rgba(26,170,128,0);}}
+
+.avatar{
+  width:110px;height:110px;border-radius:50%;margin:0 auto 1.75rem;
+  background:linear-gradient(135deg,var(--a1),var(--a2),var(--a4));
+  display:flex;align-items:center;justify-content:center;
+  font-family:'Space Grotesk',sans-serif;font-size:2.2rem;font-weight:800;color:white;
+  box-shadow:0 0 0 3px rgba(74,114,196,.15),0 0 40px var(--glow1);
+  position:relative;
+}
+.avatar::after{
+  content:'';position:absolute;inset:-4px;border-radius:50%;
+  background:linear-gradient(135deg,var(--a1),var(--a2),var(--a4));
+  z-index:-1;filter:blur(12px);opacity:.3;
+}
+
+.hero h1{
+  font-family:'Space Grotesk',sans-serif;
+  font-size:clamp(2.4rem,6vw,4rem);font-weight:800;
+  line-height:1.1;margin-bottom:.5rem;letter-spacing:-.03em;color:var(--text);
+}
+.hero h1 .grad{
+  background:linear-gradient(135deg,var(--a1) 0%,var(--a2) 50%,var(--a4) 100%);
+  -webkit-background-clip:text;-webkit-text-fill-color:transparent;
+}
+.hero-role{font-size:1.1rem;color:var(--muted);margin-bottom:.5rem;font-weight:400;}
+.hero-loc{font-size:.88rem;color:var(--muted);margin-bottom:2rem;display:flex;align-items:center;justify-content:center;gap:.75rem;flex-wrap:wrap;}
+.hero-loc span{display:flex;align-items:center;gap:.3rem;}
+.hero-loc svg{width:14px;height:14px;opacity:.6;}
+
+.hero-stats{display:flex;justify-content:center;gap:2.5rem;margin-bottom:2rem;flex-wrap:wrap;}
+.stat{text-align:center;}
+.stat-num{
+  font-family:'Space Grotesk',sans-serif;font-size:1.6rem;font-weight:800;
+  background:linear-gradient(135deg,var(--a1),var(--a3));
+  -webkit-background-clip:text;-webkit-text-fill-color:transparent;
+}
+.stat-label{font-size:.75rem;color:var(--muted);text-transform:uppercase;letter-spacing:.08em;margin-top:.1rem;}
+
+.hero-tags{display:flex;flex-wrap:wrap;gap:.6rem;justify-content:center;margin-bottom:2.5rem;}
+.htag{padding:.3rem .9rem;border-radius:999px;font-size:.78rem;font-weight:600;border:1px solid;letter-spacing:.02em;}
+.ht1{background:rgba(74,114,196,.1);border-color:rgba(74,114,196,.3);color:var(--a1);}
+.ht2{background:rgba(224,92,138,.1);border-color:rgba(224,92,138,.3);color:var(--a2);}
+.ht3{background:rgba(26,170,128,.1);border-color:rgba(26,170,128,.3);color:var(--a3);}
+.ht4{background:rgba(212,144,10,.1);border-color:rgba(212,144,10,.3);color:var(--a4);}
+.ht5{background:rgba(45,143,191,.1);border-color:rgba(45,143,191,.3);color:var(--a5);}
+
+.hero-cta{display:flex;gap:1rem;justify-content:center;flex-wrap:wrap;}
+.btn{
+  display:inline-flex;align-items:center;gap:.5rem;
+  padding:.75rem 1.75rem;border-radius:999px;font-size:.88rem;font-weight:600;
+  text-decoration:none;transition:all .25s;border:none;cursor:pointer;letter-spacing:.01em;
+}
+.btn-glow{background:linear-gradient(135deg,var(--a1),#6b8fd4);color:white;box-shadow:0 4px 20px rgba(74,114,196,.35);}
+.btn-glow:hover{transform:translateY(-3px);box-shadow:0 8px 32px rgba(74,114,196,.45);}
+.btn-ghost{background:rgba(74,114,196,.08);color:var(--text);border:1px solid var(--border);}
+.btn-ghost:hover{background:rgba(74,114,196,.15);transform:translateY(-3px);}
+
+/* SECTION */
+.sw{max-width:960px;margin:0 auto;padding:5rem 2rem;}
+.sh{margin-bottom:2.5rem;}
+.sl{
+  display:inline-flex;align-items:center;gap:.5rem;
+  font-size:.73rem;font-weight:700;text-transform:uppercase;letter-spacing:.12em;
+  color:var(--a1);margin-bottom:.6rem;
+}
+.sl::before{content:'';display:block;width:24px;height:2px;background:linear-gradient(90deg,var(--a1),var(--a2));border-radius:2px;}
+.st{font-family:'Space Grotesk',sans-serif;font-size:clamp(1.6rem,3vw,2.1rem);font-weight:800;letter-spacing:-.02em;color:var(--text);}
+
+/* ABOUT */
+.about-lead{
+  font-size:1.05rem;line-height:1.85;color:#1e2a3a;margin-bottom:2rem;
+  padding:1.5rem;background:rgba(74,114,196,.06);border:1px solid rgba(74,114,196,.15);
+  border-radius:var(--r);border-left:3px solid var(--a1);
+}
+.competency-wrap{margin-bottom:2rem;}
+.competency-wrap h4{font-size:.8rem;text-transform:uppercase;letter-spacing:.1em;color:#3a4a60;margin-bottom:.75rem;}
+.comp-chips{display:flex;flex-wrap:wrap;gap:.45rem;}
+.cc{font-size:.78rem;padding:.25rem .75rem;border-radius:999px;font-weight:500;background:rgba(74,114,196,.08);border:1px solid rgba(74,114,196,.2);color:#1e2a3a;}
+.about-cards{display:grid;grid-template-columns:repeat(auto-fit,minmax(200px,1fr));gap:1rem;}
+.ac{
+  background:var(--card);border:1px solid var(--border);border-radius:var(--r);
+  padding:1.25rem;display:flex;flex-direction:column;gap:.4rem;
+  transition:transform .2s,border-color .2s;
+}
+.ac:hover{transform:translateY(-3px);border-color:rgba(74,114,196,.35);}
+.ac-icon{font-size:1.4rem;color:var(--a1);}
+.ac-num{font-family:'Space Grotesk',sans-serif;font-size:1.5rem;font-weight:800;color:var(--a1);}
+.ac-label{font-size:.8rem;color:var(--muted);}
+
+/* EXPERIENCE */
+.timeline{position:relative;padding-left:2rem;}
+.timeline::before{
+  content:'';position:absolute;left:0;top:12px;bottom:0;width:2px;
+  background:linear-gradient(to bottom,var(--a1),var(--a2),var(--a3));border-radius:2px;
+}
+.ei{position:relative;margin-bottom:2rem;}
+.ei::before{
+  content:'';position:absolute;left:-2.38rem;top:12px;
+  width:14px;height:14px;border-radius:50%;
+  background:var(--bg);border:2.5px solid var(--a1);
+  box-shadow:0 0 10px var(--glow1);
+}
+.ec{background:var(--card);border:1px solid var(--border);border-radius:var(--r);padding:1.5rem;transition:transform .2s,border-color .2s,box-shadow .2s;}
+.ec:hover{transform:translateX(4px);border-color:rgba(74,114,196,.3);box-shadow:0 4px 24px var(--glow1);}
+.ec-header{display:flex;justify-content:space-between;align-items:flex-start;flex-wrap:wrap;gap:.5rem;margin-bottom:.75rem;}
+.ec-title{font-family:'Space Grotesk',sans-serif;font-size:1rem;font-weight:700;color:var(--text);}
+.ec-org{color:var(--a1);font-weight:600;font-size:.875rem;margin-top:.15rem;}
+.ec-date{background:rgba(74,114,196,.1);border:1px solid rgba(74,114,196,.25);color:var(--a1);font-size:.73rem;font-weight:600;padding:.25rem .75rem;border-radius:999px;white-space:nowrap;}
+.ec ul{padding-left:1.2rem;}
+.ec li{font-size:.855rem;color:#1e2a3a;margin-bottom:.45rem;line-height:1.6;}
+.ec li strong{color:var(--a3);}
+.metrics{display:flex;flex-wrap:wrap;gap:.5rem;margin-top:.75rem;}
+.metric{display:inline-flex;align-items:center;gap:.3rem;font-size:.75rem;font-weight:700;padding:.2rem .65rem;border-radius:999px;}
+.m-green{background:rgba(26,170,128,.1);border:1px solid rgba(26,170,128,.3);color:var(--a3);}
+.m-purple{background:rgba(74,114,196,.1);border:1px solid rgba(74,114,196,.3);color:var(--a1);}
+.m-pink{background:rgba(224,92,138,.1);border:1px solid rgba(224,92,138,.3);color:var(--a2);}
+.m-yellow{background:rgba(212,144,10,.1);border:1px solid rgba(212,144,10,.3);color:var(--a4);}
+
+/* PROJECTS */
+.pg{display:grid;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));gap:1.25rem;}
+.pc{
+  background:var(--card);border:1px solid var(--border);border-radius:var(--r);
+  padding:1.5rem;display:flex;flex-direction:column;gap:.75rem;
+  transition:transform .2s,box-shadow .2s,border-color .2s;position:relative;overflow:hidden;
+}
+.pc:hover{transform:translateY(-5px);}
+.pc1{border-top:2px solid var(--a1);}
+.pc1:hover{box-shadow:0 16px 48px var(--glow1);}
+.pc2{border-top:2px solid var(--a2);}
+.pc2:hover{box-shadow:0 16px 48px var(--glow2);}
+.pc-icon{width:36px;height:36px;border-radius:10px;display:flex;align-items:center;justify-content:center;}
+.pc-icon svg{width:20px;height:20px;}
+.pc-icon-blue{background:rgba(74,114,196,.12);}
+.pc-icon-blue svg{color:var(--a1);}
+.pc-icon-pink{background:rgba(224,92,138,.12);}
+.pc-icon-pink svg{color:var(--a2);}
+.pc-icon-green{background:rgba(26,170,128,.12);}
+.pc-icon-green svg{color:var(--a3);}
+.pc-icon-yellow{background:rgba(212,144,10,.12);}
+.pc-icon-yellow svg{color:var(--a4);}
+.pc-title{font-family:'Space Grotesk',sans-serif;font-size:1rem;font-weight:700;line-height:1.3;color:var(--text);}
+.pc-chips{display:flex;flex-wrap:wrap;gap:.35rem;}
+.pchip{font-size:.72rem;font-weight:600;padding:.2rem .6rem;border-radius:999px;background:rgba(74,114,196,.07);color:var(--muted);border:1px solid var(--border);}
+.pc-desc{font-size:.845rem;color:#3a4a5c;line-height:1.65;flex-grow:1;}
+
+/* PUBLICATION */
+.pub{
+  background:var(--card);border:1px solid rgba(74,114,196,.2);border-radius:20px;
+  padding:2rem;display:flex;gap:1.5rem;align-items:flex-start;
+  box-shadow:0 0 32px rgba(74,114,196,.06);transition:transform .2s,box-shadow .2s;
+}
+.pub:hover{transform:translateY(-3px);box-shadow:0 8px 40px rgba(74,114,196,.12);}
+.pub-badge{
+  background:linear-gradient(135deg,var(--a1),var(--a2));color:white;
+  font-size:.72rem;font-weight:700;text-transform:uppercase;letter-spacing:.06em;
+  padding:.5rem .9rem;border-radius:12px;flex-shrink:0;text-align:center;line-height:1.4;min-width:80px;
+}
+.pub-title{font-family:'Space Grotesk',sans-serif;font-weight:700;font-size:1rem;margin-bottom:.4rem;line-height:1.4;color:var(--text);}
+.pub-authors{font-size:.82rem;color:var(--muted);margin-bottom:.3rem;}
+.pub-venue{font-size:.82rem;font-weight:600;color:var(--a1);margin-bottom:.75rem;}
+.pub-link{
+  display:inline-flex;align-items:center;gap:.4rem;
+  color:var(--a2);font-size:.82rem;font-weight:600;text-decoration:none;
+  padding:.35rem .9rem;border-radius:999px;border:1px solid rgba(224,92,138,.3);
+  background:rgba(224,92,138,.07);transition:all .2s;
+}
+.pub-link:hover{background:rgba(224,92,138,.15);transform:translateX(3px);}
+.pub-link svg{width:14px;height:14px;}
+
+/* SKILLS */
+.skills-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:1rem;}
+.skcard{background:var(--card);border:1px solid var(--border);border-radius:var(--r);padding:1.25rem;transition:transform .2s,border-color .2s;}
+.skcard:hover{transform:translateY(-3px);border-color:rgba(74,114,196,.3);}
+.skcard-head{display:flex;align-items:center;gap:.6rem;margin-bottom:.85rem;}
+.skcard-icon{width:30px;height:30px;display:flex;align-items:center;justify-content:center;border-radius:8px;}
+.skcard-icon svg{width:16px;height:16px;}
+.skcard h3{font-size:.88rem;font-weight:700;color:var(--text);}
+.sk-chips{display:flex;flex-wrap:wrap;gap:.35rem;}
+.skchip{font-size:.75rem;padding:.22rem .65rem;border-radius:999px;font-weight:500;border:1px solid;}
+.sk1{background:rgba(74,114,196,.1);border-color:rgba(74,114,196,.25);color:#2a4a8a;}
+.sk2{background:rgba(224,92,138,.1);border-color:rgba(224,92,138,.25);color:#a03060;}
+.sk3{background:rgba(26,170,128,.1);border-color:rgba(26,170,128,.25);color:#0d7a5a;}
+.sk4{background:rgba(212,144,10,.1);border-color:rgba(212,144,10,.25);color:#8a5a00;}
+.sk5{background:rgba(45,143,191,.1);border-color:rgba(45,143,191,.25);color:#1a5f80;}
+
+/* EDUCATION */
+.edu-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));gap:1.25rem;}
+.educ{background:var(--card);border:1px solid var(--border);border-radius:var(--r);padding:1.5rem;position:relative;overflow:hidden;transition:transform .2s;}
+.educ:hover{transform:translateY(-3px);}
+.educ::after{content:'';position:absolute;top:0;left:0;right:0;height:3px;background:linear-gradient(90deg,var(--a1),var(--a2),var(--a4));}
+.educ-icon{width:40px;height:40px;border-radius:10px;background:rgba(74,114,196,.1);display:flex;align-items:center;justify-content:center;margin-bottom:.75rem;}
+.educ-icon svg{width:22px;height:22px;color:var(--a1);}
+.educ-deg{font-family:'Space Grotesk',sans-serif;font-size:.975rem;font-weight:700;margin-bottom:.3rem;color:var(--text);}
+.educ-uni{color:var(--a1);font-weight:600;font-size:.85rem;margin-bottom:.25rem;}
+.educ-date{font-size:.78rem;color:var(--muted);margin-bottom:.5rem;}
+.educ-courses{font-size:.8rem;color:#3a4a5c;background:rgba(74,114,196,.05);border-radius:8px;padding:.65rem;border:1px solid var(--border);margin-top:.5rem;}
+
+/* CONTACT */
+.contact-strip{
+  background:linear-gradient(135deg,rgba(74,114,196,.1),rgba(224,92,138,.07));
+  border:1px solid rgba(74,114,196,.2);border-radius:20px;
+  padding:2.5rem;text-align:center;
+}
+.contact-strip h2{font-family:'Space Grotesk',sans-serif;font-size:1.75rem;font-weight:800;margin-bottom:.5rem;color:var(--text);}
+.contact-strip p{color:var(--muted);margin-bottom:1.5rem;}
+.contact-btns{display:flex;gap:1rem;justify-content:center;flex-wrap:wrap;}
+
+/* FOOTER */
+footer{border-top:1px solid var(--border);padding:2rem;text-align:center;color:var(--muted);font-size:.82rem;}
+footer a{color:var(--a1);text-decoration:none;font-weight:500;}
+footer a:hover{color:var(--a3);}
+.footer-links{display:flex;justify-content:center;gap:1.5rem;margin-bottom:.75rem;flex-wrap:wrap;}
+
+@media(max-width:640px){
+  nav{padding:0 1rem;}
+  .nav-links{gap:1rem;}
+  .nav-links a{font-size:.75rem;}
+  .hero-stats{gap:1.5rem;}
+  .pub{flex-direction:column;}
+}
+</style>
 </head>
 <body>
-    <div class="container">
-        <aside class="sidebar">
-            <div class="profile-section">
-                <h1 class="name">Mohan Kumar</h1>
-                <!-- Placeholder for profile image - you can add your photo later -->
 
-                <div class="profile-image-placeholder">
-                    <img src="grad.JPG" alt="Mohan Kumar" class="profile-image">
-                </div>
-                
-                <div class="contact-info">
-                    <p class="email">mbaleath@uccs.edu</p>
-                    <div class="social-links">
-                        <a href="https://www.linkedin.com/in/mohan-kumar-753848172/" target="_blank">LinkedIn</a>
-                        <a href="https://github.com/mohankumarbc920" target="_blank">Github</a>
-                    </div>
-                </div>
-            </div>
-        </aside>
+<!-- NAV -->
+<nav>
+  <div class="nav-logo">MK</div>
+  <ul class="nav-links">
+    <li><a href="#about">About</a></li>
+    <li><a href="#experience">Experience</a></li>
+    <li><a href="#projects">Projects</a></li>
+    <li><a href="#publications">Research</a></li>
+    <li><a href="#skills">Skills</a></li>
+    <li><a href="#education">Education</a></li>
+  </ul>
+</nav>
 
-        <main class="main-content">
-            <section id="about" class="about section-animate">
-                <div class="section-badge">About Me</div>
-                <h2 class="section-title">Building the Future with AI</h2>
-                
-                <div class="about-content">
-                    <p class="lead-text">
-        I am an AI Engineer and published researcher with 3+ years of experience advancing multimodal and generative AI systems. My expertise spans transformer and diffusion model design, scalable MLOps, and GPU-accelerated pipelines. I specialize in translating complex research into deployable, high-performing AI solutions that drive measurable impact in production environments.
-    </p>
-    
-    <p>
-        Recent Grad with Master's in Computer Science at the <strong>University of Colorado, Colorado Springs</strong>, I focus on Artificial Intelligence, Computational Linguistics, and Data Mining. My research in computational genomics has been recognized with a publication in the prestigious <strong>Bioinformatics Journal</strong> (ISMB/ECCB 2025), where I achieved state-of-the-art results in 3D genome structure reconstruction using diffusion-based deep learning frameworks.
-    </p>
-    
-    <p>
-        My technical foundation combines deep expertise in AI model development with robust software engineering practices. I excel at building scalable, production-grade systems using Python, Docker, Kubernetes, and CI/CD automation. Whether it's fine-tuning transformer architectures, optimizing graph neural networks, or deploying cloud-native ML pipelines, I bridge the gap between cutting-edge research and real-world applications.
-    </p>
-    
-    <p>
-        Previously at <strong>L&T Technology Services</strong>, I developed intelligent automation systems and backend services for large-scale data workflows, reducing deployment cycles by 30% through comprehensive CI/CD automation and improving system reliability across distributed environments. I've demonstrated consistent impact in GenAI, multimodal learning, image-to-text systems, and production-ready AI tooling.
-    </p>
-    
-    <p>
-        I'm passionate about building intelligent, efficient, and explainable AI systems that solve complex problems while maintaining operational excellence. My approach combines rigorous research methodology with pragmatic engineering practices, ensuring solutions are not only innovative but also scalable, reproducible, and production-ready.
-    </p>
-
-            </section>
-
-            <section class="experience">
-                <h2>Experience</h2>
-
-                <div class="experience-item">
-                    <h3>Research and Development Intern</h3>
-                    <p class="organization">Rabid Troll Studios LLC</p>
-                    <p class="date">Aug 2025 - Present</p>
-                    <ul>
-                        <li> Engineered and implemented an AI planner within the game system to dynamically guide players, enhancing strategic understanding and improving overall game comprehension and flow. </li>
-                        <li>Designed data collection frameworks and performed statistical analysis of player behavior and user experience metrics using Python.</li>
-                        <li>Built and evaluated interactive prototypes of game concepts using Unity and C# to assess engagement, usability, and player impact.</li>
-                    </ul>
-                </div>
-
-            
-                <div class="experience-item">
-                    <h3>Graduate Research Assistant</h3>
-                    <p class="organization">University of Colorado, Colorado Springs</p>
-                    <p class="date">Jan 2024 - May 2025</p>
-                    <ul>
-                        <li>Developed and optimized multimodal AI pipelines using PyTorch/TensorFlow for large-scale genomic imaging and super-resolution tasks, achieving +5% PSNR and +8% SSIM through diffusion-inspired degradation learning.</li>
-                        <li>Designed and deployed production-ready AI workflows using Docker, Kubernetes, MLflow, and automated data/model versioning, improving reproducibility and reducing experiment iteration time.</li>
-                        <li>Engineered a scalable Graph Attention Network (GAT) architecture with parallelized training and inference, outperforming baseline dSCC by 3% while maintaining GPU efficiency and low memory footprint.</li>
-                        <li>Contributed to open-source AI tooling for research teams, adding model optimization, inference speed-ups, custom data loaders, and debugging utilities utilized across multiple projects.</li>
-                    </ul>
-                </div>
-
-                <div class="experience-item">
-                    <h3>Software Engineer</h3>
-                    <p class="organization">L&T Technology Services, India</p>
-                    <p class="date">Sep 2020 – Aug 2023</p>
-                    <ul>
-                        <li>Developed intelligent C#/.NET and Python-based automation systems that powered smart meter workflows, including inference-driven diagnostics and anomaly detection modules.</li>
-                        <li>Built backend services and tooling for large-scale data workflows, improving deployment speed by 30% through CI/CD automation, test coverage expansion, and environment provisioning.</li>
-                        <li>Led debugging and performance optimization across AI-adjacent systems, improving reliability of data ingestion, feature extraction tooling, and downstream inference processes.</li>
-                        <li>Created Python-based geospatial and firmware-update modules leveraging rule-based ML preprocessing to reduce manual engineering effort by 30%.</li>
-                    </ul>
-                </div>
-            </section>
-
-            <section class="projects">
-                <h2>Selected Projects</h2>
-                
-                <div class="project-item">
-                    <h3>Enhancing Image Captioning with CNN and Transformer Model</h3>
-                    <p class="tech-stack">PyTorch, Transformers, EfficientNet</p>
-                    <p>Built a hybrid EfficientNet-Transformer model for image captioning using TensorFlow and Keras, employing EfficientNetB1 for feature extraction and a custom Transformer decoder with attention and positional embeddings. Applied BLEU evaluation, preprocessing, and early stopping, achieving a 2.4% BLEU-4 improvement over baselines on Flickr8K.</p>
-                </div>
-
-                <div class="project-item">
-                    <h3>Automated Visual Summary Detection</h3>
-                    <p class="tech-stack">TensorFlow, EfficientNetB7, T5-small</p>
-                    <p>Developed an image summarization framework using the Stanford Image Paragraph dataset by integrating EfficientNetB7 for visual feature extraction and a fine-tuned Hugging Face T5-small (LLM) model for text generation. Applied cross-attention and enhanced beam search to improve coherence and contextual alignment, achieving a BLEU-4 score of 8.87.</p>
-                </div>
-
-                <div class="project-item">
-                    <h3>Text Classification</h3>
-                    <p class="tech-stack">Python, scikit-learn, Keras, Tableau</p>
-                    <p>Built a text classification service in Python using scikit-learn, Keras, and Tableau. Preprocessed datasets, implemented and compared Naive Bayes, SVMs, and neural network classifiers, visualizing model performance to guide business decisions.</p>
-                </div>
-            </section>
-
-            <section class="publications">
-                <h2>Publications</h2>
-                
-                <div class="publication">
-                    <h3>Unicorn: Enhancing Single-Cell Hi-C Data with Blind Super-Resolution for 3D Genome Structure Reconstruction</h3>
-                    <p class="authors">Chandrashekar M. K., Menon R., Olowofila S., & Oluwadare O.</p>
-                    <p class="venue">ISMB/ECCB 2025 Conference | Oxford Bioinformatics Journal</p>
-                    <a href="https://academic.oup.com/bioinformatics/article/41/Supplement_1/i475/8199354" target="_blank">Paper</a>
-            </section>
-
-            <section class="skills">
-                <h2>Technologies & Skills</h2>
-                
-                <div class="skill-category">
-                    <h3>AI/LLM Frameworks</h3>
-                    <p>PyTorch, TensorFlow, Hugging Face Transformers, T5, EfficientNet, diffusion models, attention architectures</p>
-                </div>
-
-                <div class="skill-category">
-                    <h3>Core ML/AI Skills</h3>
-                    <p>Fine-tuning, embeddings & feature extraction, multimodal learning, inference optimization, prompt engineering</p>
-                </div>
-
-                <div class="skill-category">
-                    <h3>MLOps & Systems</h3>
-                    <p>Docker, Kubernetes, MLflow, DVC, FastAPI, CI/CD (GitHub Actions, Jenkins), GPU optimization</p>
-                </div>
-
-                <div class="skill-category">
-                    <h3>Programming Languages</h3>
-                    <p>Python, C#, Java, SQL, C++, JavaScript</p>
-                </div>
-            </section>
-
-            <section class="education">
-                <h2>Education</h2>
-                
-                <div class="education-item">
-                    <h3>Master of Science in Computer Science</h3>
-                    <p class="organization">University of Colorado, Colorado Springs</p>
-                    <p class="date">Aug 2023 – May 2025</p>
-                    <p class="courses"><strong>Courses:</strong> Artificial Intelligence, Computational Linguistics, Data Mining, Data Visualization, Data Structures & Algorithms</p>
-                </div>
-
-                <div class="education-item">
-                    <h3>Bachelor of Engineering in Computer Science</h3>
-                    <p class="organization">Visvesvaraya Technological University, Bengaluru, India</p>
-                    <p class="date">Aug 2015 – Jun 2019</p>
-                </div>
-            </section>
-        </main>
+<!-- HERO -->
+<div class="hero">
+  <div class="hero-bg"></div>
+  <div class="orb orb1"></div>
+  <div class="orb orb2"></div>
+  <div class="orb orb3"></div>
+  <div class="hero-inner">
+    <div class="status-pill"><span class="status-dot"></span> Open to new opportunities</div>
+    <img src="grad.JPG" alt="Mohan Kumar" style="width:110px;height:110px;border-radius:50%;object-fit:cover;border:3px solid white;box-shadow:0 0 40px rgba(74,114,196,0.3);">
+    <h1>Mohan Kumar<br><span class="grad">AI / ML Engineer</span></h1>
+    <div class="hero-role">Multimodal Systems &amp; Applied Research Innovation</div>
+    <div class="hero-loc">
+      <span>
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7zm0 9.5c-1.38 0-2.5-1.12-2.5-2.5s1.12-2.5 2.5-2.5 2.5 1.12 2.5 2.5-1.12 2.5-2.5 2.5z"/></svg>
+        San Jose, CA
+      </span>
+      <span>
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg>
+        mbaleath@uccs.edu
+      </span>
+      <span>
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 16.92v3a2 2 0 01-2.18 2 19.79 19.79 0 01-8.63-3.07A19.5 19.5 0 013.07 9.81 19.79 19.79 0 01.18 3.17 2 2 0 012.16 1h3a2 2 0 012 1.72 12.84 12.84 0 00.7 2.81 2 2 0 01-.45 2.11L6.09 8.91a16 16 0 006 6l1.27-1.27a2 2 0 012.11-.45 12.84 12.84 0 002.81.7A2 2 0 0122 16.92z"/></svg>
+        719.354.8477
+      </span>
     </div>
 
-    <footer>
-        <p>&copy; 2025 Mohan Kumar. All rights reserved.</p>
-    </footer>
+    <div class="hero-stats">
+      <div class="stat"><div class="stat-num">3+</div><div class="stat-label">Years Experience</div></div>
+      <div class="stat"><div class="stat-num">28%</div><div class="stat-label">Query Accuracy Gain</div></div>
+      <div class="stat"><div class="stat-num">40%</div><div class="stat-label">Faster Training</div></div>
+      <div class="stat"><div class="stat-num">1</div><div class="stat-label">ISMB 2025 Publication</div></div>
+    </div>
+
+    <div class="hero-tags">
+      <span class="htag ht1">Generative AI</span>
+      <span class="htag ht2">Computational Genomics</span>
+      <span class="htag ht3">MLOps</span>
+      <span class="htag ht4">Diffusion Models</span>
+      <span class="htag ht5">RAG Systems</span>
+      <span class="htag ht1">LLM Fine-Tuning</span>
+    </div>
+
+    <div class="hero-cta">
+      <a href="https://www.linkedin.com/in/mohan-kumar-753848172/" target="_blank" class="btn btn-glow">
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="M16 8a6 6 0 016 6v7h-4v-7a2 2 0 00-2-2 2 2 0 00-2 2v7h-4v-7a6 6 0 016-6zM2 9h4v12H2z"/><circle cx="4" cy="4" r="2"/></svg>
+        LinkedIn
+      </a>
+      <a href="https://github.com/mohankumarbc920" target="_blank" class="btn btn-ghost">
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37 0 00-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0020 4.77 5.07 5.07 0 0019.91 1S18.73.65 16 2.48a13.38 13.38 0 00-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07 0 005 4.77a5.44 5.44 0 00-1.5 3.78c0 5.42 3.3 6.61 6.44 7A3.37 3.37 0 009 18.13V22"/></svg>
+        GitHub
+      </a>
+      <a href="mailto:mbaleath@uccs.edu" class="btn btn-ghost">
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg>
+        Email
+      </a>
+    </div>
+  </div>
+</div>
+
+<!-- ABOUT -->
+<div class="sw" id="about">
+  <div class="sh"><div class="sl">About</div><h2 class="st">Building Intelligent Systems</h2></div>
+  <p class="about-lead">
+    AI Engineer and published researcher with <strong>3+ years</strong> of experience in multimodal and generative AI across computational genomics, game AI, and production-scale NLP. Expert in transformer and diffusion model design, RAG pipelines, LLM fine-tuning, and scalable MLOps (Docker, Kubernetes) — delivering <strong>28% gains in query accuracy</strong> and <strong>40% faster model training</strong>. Passionate about bridging research innovation with real-world impact through intelligent, explainable AI systems.
+  </p>
+  <div class="competency-wrap">
+    <h4>Core Competencies</h4>
+    <div class="comp-chips">
+      <span class="cc">AI Model Development</span><span class="cc">Multimodal Learning</span><span class="cc">Diffusion Models</span>
+      <span class="cc">Transformer Architectures</span><span class="cc">Graph Neural Networks</span><span class="cc">Generative AI</span>
+      <span class="cc">MLOps</span><span class="cc">Research Experimentation</span><span class="cc">Algorithm Optimization</span>
+      <span class="cc">RAG Systems</span><span class="cc">LLM Fine-Tuning</span><span class="cc">AI Innovation</span>
+    </div>
+  </div>
+  <div class="about-cards">
+    <div class="ac">
+      <svg class="ac-icon" width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M14 2H6a2 2 0 00-2 2v16a2 2 0 002 2h12a2 2 0 002-2V8z"/><polyline points="14 2 14 8 20 8"/></svg>
+      <div class="ac-num">ISMB 2025</div><div class="ac-label">Oxford Bioinformatics Publication</div>
+    </div>
+    <div class="ac">
+      <svg class="ac-icon" width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 10v6M2 10l10-5 10 5-10 5z"/><path d="M6 12v5c3 3 9 3 12 0v-5"/></svg>
+      <div class="ac-num">MS CS</div><div class="ac-label">Univ. of Colorado, Colorado Springs</div>
+    </div>
+    <div class="ac">
+      <svg class="ac-icon" width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="22 12 18 12 15 21 9 3 6 12 2 12"/></svg>
+      <div class="ac-num">40%</div><div class="ac-label">Faster model training achieved</div>
+    </div>
+    <div class="ac">
+      <svg class="ac-icon" width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>
+      <div class="ac-num">28%</div><div class="ac-label">Query accuracy improvement</div>
+    </div>
+  </div>
+</div>
+
+<!-- EXPERIENCE -->
+<div class="sw" id="experience">
+  <div class="sh"><div class="sl">Experience</div><h2 class="st">Work History</h2></div>
+  <div class="timeline">
+
+    <div class="ei">
+      <div class="ec">
+        <div class="ec-header">
+          <div><div class="ec-title">R&D Intern — AI Systems</div><div class="ec-org">Rabid Troll Studios LLC, CO</div></div>
+          <span class="ec-date">Aug 2025 – Present</span>
+        </div>
+        <ul>
+          <li>Built end-to-end Generative AI solutions — RAG systems (LangChain, Hugging Face, OpenAI APIs) and fine-tuned LLMs achieving <strong>28% improvement</strong> in query accuracy through scalable AI retrieval workflows.</li>
+          <li>Designed scalable ML pipelines using distributed data processing and MLflow-based experiment tracking with CI/CD automation, cutting model training time by <strong>40%</strong>.</li>
+          <li>Developed C#-based Unity AI prototypes and reinforcement-based evaluation pipelines with automated scenario testing, reducing manual QA cycles.</li>
+          <li>Collaborated cross-functionally with game designers and data scientists; established internal best practices for LLM lifecycle management.</li>
+        </ul>
+        <div class="metrics">
+          <span class="metric m-green">↑ 28% Query Accuracy</span>
+          <span class="metric m-purple">↑ 40% Faster Training</span>
+          <span class="metric m-pink">RAG · LLM Fine-tuning</span>
+        </div>
+      </div>
+    </div>
+
+    <div class="ei">
+      <div class="ec">
+        <div class="ec-header">
+          <div><div class="ec-title">Graduate Research Assistant</div><div class="ec-org">Dr. Oluwadare Bioinformatics Lab, UCCS</div></div>
+          <span class="ec-date">Jan 2024 – May 2025</span>
+        </div>
+        <ul>
+          <li>Designed diffusion-based deep learning frameworks for genomic imaging and 3D chromatin structure prediction — improving quality by <strong>+5% PSNR</strong> and <strong>+8% SSIM</strong> over baselines.</li>
+          <li>Automated end-to-end MLOps pipelines using Docker and Kubernetes, achieving <strong>40% faster reproducibility</strong> across GPU clusters.</li>
+          <li>Engineered scalable Graph Attention Network (GAT) for correlation analysis, boosting dSCC performance by <strong>3%</strong> with optimized graph computation.</li>
+          <li>Authored open-source research tools and published methods improving AI reproducibility standards in computational biology.</li>
+        </ul>
+        <div class="metrics">
+          <span class="metric m-green">+5% PSNR · +8% SSIM</span>
+          <span class="metric m-purple">+3% dSCC boost</span>
+          <span class="metric m-yellow">Published Research</span>
+        </div>
+      </div>
+    </div>
+
+    <div class="ei">
+      <div class="ec">
+        <div class="ec-header">
+          <div><div class="ec-title">Software Engineer</div><div class="ec-org">L&T Technology Services, India</div></div>
+          <span class="ec-date">Sep 2020 – Aug 2023</span>
+        </div>
+        <ul>
+          <li>Designed modular C#/ASP.NET systems for Smartmeter operations, reducing deployment time by <strong>30%</strong> through automated build and testing pipelines.</li>
+          <li>Built Python utilities for geospatial data extraction and firmware automation, shortening release validation by <strong>35%</strong> while increasing accuracy.</li>
+          <li>Enhanced CI/CD workflows and monitoring framework, decreasing deployment rollbacks by <strong>20%</strong> and improving uptime consistency.</li>
+          <li>Delivered scalable frontend solutions aligned with cross-team product requirements.</li>
+        </ul>
+        <div class="metrics">
+          <span class="metric m-green">↓ 30% Deployment Time</span>
+          <span class="metric m-pink">↓ 35% Validation Time</span>
+          <span class="metric m-purple">↓ 20% Rollbacks</span>
+        </div>
+      </div>
+    </div>
+
+  </div>
+</div>
+
+<!-- PROJECTS -->
+<div class="sw" id="projects">
+  <div class="sh"><div class="sl">Projects</div><h2 class="st">Selected Projects</h2></div>
+  <div class="pg">
+
+    <div class="pc pc1">
+      <div class="pc-icon pc-icon-blue">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="3" width="18" height="18" rx="2"/><path d="M3 9h18M9 21V9"/></svg>
+      </div>
+      <div class="pc-title">CNN–Transformer Vision-Language Model</div>
+      <div class="pc-chips"><span class="pchip">PyTorch</span><span class="pchip">EfficientNetB1</span><span class="pchip">Transformers</span><span class="pchip">Keras</span><span class="pchip">Flickr8K</span></div>
+      <p class="pc-desc">Hybrid CNN–Transformer architecture for image captioning. EfficientNetB1 for feature extraction paired with a custom Transformer decoder using attention and positional embeddings. Achieved <strong>+2.4% BLEU-4</strong> over baseline, enabling real-time visual-text semantic alignment.</p>
+    </div>
+
+    <div class="pc pc2">
+      <div class="pc-icon pc-icon-pink">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M14 2H6a2 2 0 00-2 2v16a2 2 0 002 2h12a2 2 0 002-2V8z"/><polyline points="14 2 14 8 20 8"/><line x1="16" y1="13" x2="8" y2="13"/><line x1="16" y1="17" x2="8" y2="17"/><polyline points="10 9 9 9 8 9"/></svg>
+      </div>
+      <div class="pc-title">Automated Visual Summary Detection</div>
+      <div class="pc-chips"><span class="pchip">TensorFlow</span><span class="pchip">EfficientNetB7</span><span class="pchip">T5-small</span><span class="pchip">Hugging Face</span><span class="pchip">Beam Search</span></div>
+      <p class="pc-desc">CNN–T5 image summarization framework on the Stanford Image Paragraph dataset. Cross-attention and enhanced beam search achieved <strong>BLEU-4 of 8.87</strong>, improving contextual summarization and model interpretability at scale.</p>
+    </div>
+
+    <div class="pc pc1">
+      <div class="pc-icon pc-icon-green">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><ellipse cx="12" cy="5" rx="9" ry="3"/><path d="M21 12c0 1.66-4 3-9 3s-9-1.34-9-3"/><path d="M3 5v14c0 1.66 4 3 9 3s9-1.34 9-3V5"/></svg>
+      </div>
+      <div class="pc-title">RAG-Powered Document Q&A Assistant</div>
+      <div class="pc-chips"><span class="pchip">LangChain</span><span class="pchip">OpenAI GPT-4</span><span class="pchip">FAISS</span><span class="pchip">FastAPI</span><span class="pchip">Docker</span></div>
+      <p class="pc-desc">End-to-end Retrieval-Augmented Generation pipeline that ingests enterprise documents (PDF, DOCX), embeds them into a FAISS vector store, and serves accurate Q&A via FastAPI. Achieved <strong>~30% reduction in hallucinations</strong> vs. vanilla GPT-4 with sub-second retrieval latency.</p>
+    </div>
+
+    <div class="pc pc2">
+      <div class="pc-icon pc-icon-yellow">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="22 12 18 12 15 21 9 3 6 12 2 12"/></svg>
+      </div>
+      <div class="pc-title">LLM Fine-Tuning Pipeline for Domain NLP</div>
+      <div class="pc-chips"><span class="pchip">Hugging Face</span><span class="pchip">LoRA / PEFT</span><span class="pchip">MLflow</span><span class="pchip">PyTorch</span><span class="pchip">Kubernetes</span></div>
+      <p class="pc-desc">Scalable fine-tuning pipeline for adapting Llama 2 and Mistral to domain-specific tasks using LoRA/PEFT for parameter-efficient training. MLflow for experiment tracking and DVC for versioning — reduced fine-tuning costs by <strong>60%</strong> vs. full fine-tuning, deployed on Kubernetes with auto-scaling.</p>
+    </div>
+
+  </div>
+</div>
+
+<!-- PUBLICATIONS -->
+<div class="sw" id="publications">
+  <div class="sh"><div class="sl">Research</div><h2 class="st">Publications</h2></div>
+  <div class="pub">
+    <div class="pub-badge">ISMB/<br>ECCB<br>2025</div>
+    <div>
+      <div class="pub-title">Unicorn: Enhancing Single-Cell Hi-C Data with Blind Super-Resolution for 3D Genome Structure Reconstruction</div>
+      <div class="pub-authors">Chandrashekar M. K., Menon R., Olowofila S., &amp; Oluwadare O.</div>
+      <div class="pub-venue">Oxford Bioinformatics Journal · ISMB/ECCB 2025 Conference</div>
+      <a href="https://academic.oup.com/bioinformatics/article/41/Supplement_1/i475/8199354" target="_blank" class="pub-link">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M18 13v6a2 2 0 01-2 2H5a2 2 0 01-2-2V8a2 2 0 012-2h6"/><polyline points="15 3 21 3 21 9"/><line x1="10" y1="14" x2="21" y2="3"/></svg>
+        Read Paper
+      </a>
+    </div>
+  </div>
+</div>
+
+<!-- SKILLS -->
+<div class="sw" id="skills">
+  <div class="sh"><div class="sl">Skills</div><h2 class="st">Tech Stack</h2></div>
+  <div class="skills-grid">
+    <div class="skcard">
+      <div class="skcard-head">
+        <div class="skcard-icon" style="background:rgba(74,114,196,.1)"><svg viewBox="0 0 24 24" fill="none" stroke="var(--a1)" stroke-width="2"><path d="M12 2L2 7l10 5 10-5-10-5zM2 17l10 5 10-5M2 12l10 5 10-5"/></svg></div>
+        <h3>AI / LLM Frameworks</h3>
+      </div>
+      <div class="sk-chips"><span class="skchip sk1">PyTorch</span><span class="skchip sk1">TensorFlow</span><span class="skchip sk1">Hugging Face</span><span class="skchip sk1">LangChain</span><span class="skchip sk1">OpenAI APIs</span><span class="skchip sk1">JAX</span></div>
+    </div>
+    <div class="skcard">
+      <div class="skcard-head">
+        <div class="skcard-icon" style="background:rgba(224,92,138,.1)"><svg viewBox="0 0 24 24" fill="none" stroke="var(--a2)" stroke-width="2"><circle cx="12" cy="12" r="10"/><path d="M9.09 9a3 3 0 015.83 1c0 2-3 3-3 3"/><line x1="12" y1="17" x2="12.01" y2="17"/></svg></div>
+        <h3>Core ML / AI</h3>
+      </div>
+      <div class="sk-chips"><span class="skchip sk2">Fine-tuning</span><span class="skchip sk2">RAG Pipelines</span><span class="skchip sk2">Diffusion Models</span><span class="skchip sk2">Multimodal Learning</span><span class="skchip sk2">Prompt Engineering</span><span class="skchip sk2">Graph Neural Nets</span></div>
+    </div>
+    <div class="skcard">
+      <div class="skcard-head">
+        <div class="skcard-icon" style="background:rgba(26,170,128,.1)"><svg viewBox="0 0 24 24" fill="none" stroke="var(--a3)" stroke-width="2"><rect x="2" y="3" width="20" height="14" rx="2"/><line x1="8" y1="21" x2="16" y2="21"/><line x1="12" y1="17" x2="12" y2="21"/></svg></div>
+        <h3>MLOps &amp; Systems</h3>
+      </div>
+      <div class="sk-chips"><span class="skchip sk3">Docker</span><span class="skchip sk3">Kubernetes</span><span class="skchip sk3">MLflow</span><span class="skchip sk3">DVC</span><span class="skchip sk3">FastAPI</span><span class="skchip sk3">CUDA</span><span class="skchip sk3">PySpark</span><span class="skchip sk3">GitHub Actions</span></div>
+    </div>
+    <div class="skcard">
+      <div class="skcard-head">
+        <div class="skcard-icon" style="background:rgba(212,144,10,.1)"><svg viewBox="0 0 24 24" fill="none" stroke="var(--a4)" stroke-width="2"><polyline points="16 18 22 12 16 6"/><polyline points="8 6 2 12 8 18"/></svg></div>
+        <h3>Languages</h3>
+      </div>
+      <div class="sk-chips"><span class="skchip sk4">Python</span><span class="skchip sk4">C#</span><span class="skchip sk4">Java</span><span class="skchip sk4">SQL</span><span class="skchip sk4">C++</span><span class="skchip sk4">JavaScript</span></div>
+    </div>
+    <div class="skcard">
+      <div class="skcard-head">
+        <div class="skcard-icon" style="background:rgba(45,143,191,.1)"><svg viewBox="0 0 24 24" fill="none" stroke="var(--a5)" stroke-width="2"><path d="M14.7 6.3a1 1 0 000 1.4l1.6 1.6a1 1 0 001.4 0l3.77-3.77a6 6 0 01-7.94 7.94l-6.91 6.91a2.12 2.12 0 01-3-3l6.91-6.91a6 6 0 017.94-7.94l-3.76 3.76z"/></svg></div>
+        <h3>Tools &amp; Libraries</h3>
+      </div>
+      <div class="sk-chips"><span class="skchip sk5">NumPy</span><span class="skchip sk5">scikit-learn</span><span class="skchip sk5">Unity (C#)</span><span class="skchip sk5">ASP.NET</span><span class="skchip sk5">Tableau</span></div>
+    </div>
+  </div>
+</div>
+
+<!-- EDUCATION -->
+<div class="sw" id="education">
+  <div class="sh"><div class="sl">Education</div><h2 class="st">Education</h2></div>
+  <div class="edu-grid">
+    <div class="educ">
+      <div class="educ-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 10v6M2 10l10-5 10 5-10 5z"/><path d="M6 12v5c3 3 9 3 12 0v-5"/></svg></div>
+      <div class="educ-deg">Master of Science — Computer Science</div>
+      <div class="educ-uni">University of Colorado, Colorado Springs</div>
+      <div class="educ-date">Aug 2023 – May 2025</div>
+      <div class="educ-courses"><strong>Courses:</strong> Artificial Intelligence, Computational Linguistics, Data Mining, Data Visualization, Data Structures &amp; Algorithms</div>
+    </div>
+    <div class="educ">
+      <div class="educ-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 10v6M2 10l10-5 10 5-10 5z"/><path d="M6 12v5c3 3 9 3 12 0v-5"/></svg></div>
+      <div class="educ-deg">Bachelor of Engineering — Computer Science</div>
+      <div class="educ-uni">Visvesvaraya Technological University, Bengaluru</div>
+      <div class="educ-date">Aug 2015 – Jun 2019</div>
+    </div>
+  </div>
+</div>
+
+<!-- CONTACT -->
+<div class="sw">
+  <div class="contact-strip">
+    <h2>Let's Connect</h2>
+    <p>Open to AI/ML engineering roles, research collaborations, and consulting opportunities.</p>
+    <div class="contact-btns">
+      <a href="mailto:mbaleath@uccs.edu" class="btn btn-glow">
+        <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg>
+        Get in Touch
+      </a>
+      <a href="https://www.linkedin.com/in/mohan-kumar-753848172/" target="_blank" class="btn btn-ghost">
+        <svg width="15" height="15" viewBox="0 0 24 24" fill="currentColor"><path d="M16 8a6 6 0 016 6v7h-4v-7a2 2 0 00-2-2 2 2 0 00-2 2v7h-4v-7a6 6 0 016-6zM2 9h4v12H2z"/><circle cx="4" cy="4" r="2"/></svg>
+        LinkedIn
+      </a>
+      <a href="https://github.com/mohankumarbc920" target="_blank" class="btn btn-ghost">
+        <svg width="15" height="15" viewBox="0 0 24 24" fill="currentColor"><path d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37 0 00-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0020 4.77 5.07 5.07 0 0019.91 1S18.73.65 16 2.48a13.38 13.38 0 00-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07 0 005 4.77a5.44 5.44 0 00-1.5 3.78c0 5.42 3.3 6.61 6.44 7A3.37 3.37 0 009 18.13V22"/></svg>
+        GitHub
+      </a>
+    </div>
+  </div>
+</div>
+
+<!-- FOOTER -->
+<footer>
+  <div class="footer-links">
+    <a href="https://www.linkedin.com/in/mohan-kumar-753848172/" target="_blank">LinkedIn</a>
+    <a href="https://github.com/mohankumarbc920" target="_blank">GitHub</a>
+    <a href="mailto:mbaleath@uccs.edu">Email</a>
+    <a href="https://academic.oup.com/bioinformatics/article/41/Supplement_1/i475/8199354" target="_blank">Publication</a>
+  </div>
+  <p>© 2025 Mohan Kumar · AI/ML Engineer · San Jose, CA</p>
+</footer>
+
 </body>
 </html>
