@@ -1,0 +1,577 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Mohan Kumar - AI Engineer</title>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&family=Space+Grotesk:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --bg: #fafafa;
+    --card: #ffffff;
+    --text: #1a1a2e;
+    --muted: #6b7280;
+    --accent1: #6c63ff;
+    --accent2: #ff6584;
+    --accent3: #43d9ad;
+    --accent4: #ffd166;
+    --accent5: #f77f00;
+    --border: #e5e7eb;
+    --radius: 16px;
+    --shadow: 0 4px 24px rgba(108,99,255,0.08);
+  }
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+  html { scroll-behavior: smooth; }
+  body { font-family: 'Inter', sans-serif; background: var(--bg); color: var(--text); line-height: 1.7; }
+
+  /* NAV */
+  nav {
+    position: sticky; top: 0; z-index: 100;
+    background: rgba(250,250,250,0.85); backdrop-filter: blur(12px);
+    border-bottom: 1px solid var(--border);
+    display: flex; justify-content: space-between; align-items: center;
+    padding: 0 2rem; height: 60px;
+  }
+  .nav-logo { font-family: 'Space Grotesk', sans-serif; font-weight: 700; font-size: 1.1rem; color: var(--accent1); }
+  .nav-links { display: flex; gap: 1.5rem; list-style: none; }
+  .nav-links a { text-decoration: none; color: var(--muted); font-size: .875rem; font-weight: 500; transition: color .2s; }
+  .nav-links a:hover { color: var(--accent1); }
+
+  /* HERO */
+  .hero {
+    min-height: 90vh; display: flex; align-items: center; justify-content: center;
+    padding: 4rem 2rem; text-align: center;
+    background: linear-gradient(135deg, #f0f0ff 0%, #fff5f8 50%, #f0fff8 100%);
+    position: relative; overflow: hidden;
+  }
+  .hero::before {
+    content: '';
+    position: absolute; inset: 0;
+    background: radial-gradient(circle at 20% 50%, rgba(108,99,255,.12) 0%, transparent 50%),
+                radial-gradient(circle at 80% 20%, rgba(255,101,132,.1) 0%, transparent 40%),
+                radial-gradient(circle at 60% 80%, rgba(67,217,173,.1) 0%, transparent 40%);
+  }
+  .hero-inner { position: relative; max-width: 700px; }
+  .hero-badge {
+    display: inline-flex; align-items: center; gap: .5rem;
+    background: white; border: 1.5px solid var(--accent1);
+    color: var(--accent1); font-size: .8rem; font-weight: 600;
+    padding: .35rem 1rem; border-radius: 999px; margin-bottom: 1.5rem;
+    box-shadow: 0 2px 12px rgba(108,99,255,.15);
+  }
+  .hero-badge::before { content: '✦'; font-size: .7rem; }
+  .avatar-wrap {
+    width: 120px; height: 120px; border-radius: 50%;
+    background: linear-gradient(135deg, var(--accent1), var(--accent2));
+    display: flex; align-items: center; justify-content: center;
+    margin: 0 auto 1.5rem;
+    font-size: 2.5rem; font-weight: 800; color: white;
+    font-family: 'Space Grotesk', sans-serif;
+    box-shadow: 0 8px 32px rgba(108,99,255,.3);
+    border: 4px solid white;
+  }
+  .hero h1 {
+    font-family: 'Space Grotesk', sans-serif; font-size: clamp(2rem, 5vw, 3.2rem);
+    font-weight: 800; line-height: 1.15; margin-bottom: .75rem;
+  }
+  .hero h1 span { 
+    background: linear-gradient(135deg, var(--accent1), var(--accent2));
+    -webkit-background-clip: text; -webkit-text-fill-color: transparent;
+  }
+  .hero-sub { font-size: 1.1rem; color: var(--muted); margin-bottom: 2rem; }
+  .hero-tags { display: flex; flex-wrap: wrap; gap: .6rem; justify-content: center; margin-bottom: 2rem; }
+  .tag {
+    padding: .3rem .9rem; border-radius: 999px; font-size: .8rem; font-weight: 600;
+    border: 1.5px solid; transition: transform .2s;
+  }
+  .tag:hover { transform: translateY(-2px); }
+  .tag-purple { background: #f0f0ff; border-color: var(--accent1); color: var(--accent1); }
+  .tag-pink { background: #fff0f4; border-color: var(--accent2); color: var(--accent2); }
+  .tag-green { background: #f0fff9; border-color: var(--accent3); color: #0d9e7a; }
+  .tag-yellow { background: #fffbf0; border-color: var(--accent4); color: #b45309; }
+  .hero-actions { display: flex; gap: 1rem; justify-content: center; flex-wrap: wrap; }
+  .btn {
+    display: inline-flex; align-items: center; gap: .5rem;
+    padding: .7rem 1.6rem; border-radius: 999px; font-size: .9rem; font-weight: 600;
+    text-decoration: none; transition: all .2s; border: none; cursor: pointer;
+  }
+  .btn-primary { background: linear-gradient(135deg, var(--accent1), #8b83ff); color: white; box-shadow: 0 4px 16px rgba(108,99,255,.35); }
+  .btn-primary:hover { transform: translateY(-2px); box-shadow: 0 8px 24px rgba(108,99,255,.4); }
+  .btn-outline { background: white; color: var(--accent1); border: 1.5px solid var(--accent1); }
+  .btn-outline:hover { background: #f5f4ff; transform: translateY(-2px); }
+
+  /* SECTIONS */
+  section { padding: 5rem 2rem; max-width: 1000px; margin: 0 auto; }
+  .section-header { margin-bottom: 2.5rem; }
+  .section-label {
+    display: inline-flex; align-items: center; gap: .4rem;
+    font-size: .75rem; font-weight: 700; text-transform: uppercase; letter-spacing: .1em;
+    color: var(--accent1); margin-bottom: .5rem;
+  }
+  .section-label::before { content: ''; display: block; width: 20px; height: 2px; background: var(--accent1); border-radius: 2px; }
+  .section-title { font-family: 'Space Grotesk', sans-serif; font-size: clamp(1.5rem, 3vw, 2rem); font-weight: 700; }
+
+  /* ABOUT */
+  #about { background: white; border-radius: 24px; padding: 3rem; box-shadow: var(--shadow); max-width: 1000px; }
+  #about .about-wrap { max-width: 1000px; margin: 0 auto; }
+  .about-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 1.5rem; margin-top: 1.5rem; }
+  .about-card {
+    background: linear-gradient(135deg, #f8f7ff, #fdf0ff);
+    border: 1.5px solid #e8e6ff; border-radius: var(--radius);
+    padding: 1.25rem; display: flex; gap: .75rem; align-items: flex-start;
+  }
+  .about-card-icon { font-size: 1.5rem; flex-shrink: 0; }
+  .about-card h4 { font-size: .85rem; font-weight: 700; color: var(--accent1); margin-bottom: .2rem; }
+  .about-card p { font-size: .82rem; color: var(--muted); line-height: 1.5; }
+  .lead-text { font-size: 1.05rem; font-weight: 500; color: var(--text); line-height: 1.75; }
+
+  /* EXPERIENCE */
+  .timeline { position: relative; padding-left: 2rem; }
+  .timeline::before {
+    content: ''; position: absolute; left: 0; top: 8px; bottom: 0;
+    width: 2px; background: linear-gradient(to bottom, var(--accent1), var(--accent2), var(--accent3));
+    border-radius: 2px;
+  }
+  .exp-item { position: relative; margin-bottom: 2.5rem; }
+  .exp-item::before {
+    content: ''; position: absolute; left: -2.42rem; top: 8px;
+    width: 14px; height: 14px; border-radius: 50%;
+    background: white; border: 3px solid var(--accent1);
+    box-shadow: 0 0 0 4px rgba(108,99,255,.15);
+  }
+  .exp-card {
+    background: white; border: 1.5px solid var(--border); border-radius: var(--radius);
+    padding: 1.5rem; box-shadow: var(--shadow); transition: transform .2s, box-shadow .2s;
+  }
+  .exp-card:hover { transform: translateY(-3px); box-shadow: 0 8px 32px rgba(108,99,255,.12); }
+  .exp-header { display: flex; justify-content: space-between; align-items: flex-start; flex-wrap: wrap; gap: .5rem; margin-bottom: .75rem; }
+  .exp-title { font-family: 'Space Grotesk', sans-serif; font-size: 1.05rem; font-weight: 700; }
+  .exp-org { color: var(--accent1); font-weight: 600; font-size: .9rem; }
+  .exp-date {
+    background: linear-gradient(135deg, #f0f0ff, #fdf0ff);
+    color: var(--accent1); font-size: .75rem; font-weight: 600;
+    padding: .25rem .75rem; border-radius: 999px; border: 1px solid #e0deff; white-space: nowrap;
+  }
+  .exp-card ul { padding-left: 1.2rem; }
+  .exp-card li { font-size: .875rem; color: #374151; margin-bottom: .4rem; }
+
+  /* PROJECTS */
+  .projects-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 1.5rem; }
+  .proj-card {
+    background: white; border: 1.5px solid var(--border); border-radius: var(--radius);
+    padding: 1.5rem; box-shadow: var(--shadow); transition: transform .2s, box-shadow .2s;
+    display: flex; flex-direction: column; gap: .75rem;
+  }
+  .proj-card:hover { transform: translateY(-4px); box-shadow: 0 12px 36px rgba(108,99,255,.15); }
+  .proj-icon { font-size: 2rem; }
+  .proj-title { font-family: 'Space Grotesk', sans-serif; font-size: 1rem; font-weight: 700; line-height: 1.3; }
+  .proj-stack { display: flex; flex-wrap: wrap; gap: .4rem; }
+  .stack-chip {
+    font-size: .72rem; font-weight: 600; padding: .2rem .6rem;
+    border-radius: 999px; background: #f3f4f6; color: #374151; border: 1px solid #e5e7eb;
+  }
+  .proj-desc { font-size: .85rem; color: var(--muted); line-height: 1.6; flex-grow: 1; }
+  .proj-accent-1 { border-top: 3px solid var(--accent1); }
+  .proj-accent-2 { border-top: 3px solid var(--accent2); }
+  .proj-accent-3 { border-top: 3px solid var(--accent3); }
+
+  /* PUBLICATIONS */
+  .pub-card {
+    background: linear-gradient(135deg, #f8f7ff 0%, #fff5f8 100%);
+    border: 1.5px solid #e0deff; border-radius: var(--radius);
+    padding: 1.75rem; box-shadow: var(--shadow); display: flex; gap: 1rem; align-items: flex-start;
+  }
+  .pub-badge {
+    background: linear-gradient(135deg, var(--accent1), var(--accent2));
+    color: white; font-size: .7rem; font-weight: 700; text-transform: uppercase;
+    padding: .4rem .75rem; border-radius: 999px; white-space: nowrap; flex-shrink: 0;
+    writing-mode: horizontal-tb; margin-top: .2rem;
+  }
+  .pub-title { font-family: 'Space Grotesk', sans-serif; font-weight: 700; font-size: 1rem; margin-bottom: .4rem; line-height: 1.4; }
+  .pub-authors { font-size: .83rem; color: var(--muted); margin-bottom: .3rem; }
+  .pub-venue { font-size: .83rem; font-weight: 600; color: var(--accent1); margin-bottom: .6rem; }
+  .pub-link {
+    display: inline-flex; align-items: center; gap: .35rem;
+    color: var(--accent2); font-size: .83rem; font-weight: 600; text-decoration: none;
+    border-bottom: 1.5px solid transparent; transition: border-color .2s;
+  }
+  .pub-link:hover { border-color: var(--accent2); }
+
+  /* SKILLS */
+  .skills-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap: 1.25rem; }
+  .skill-card {
+    background: white; border: 1.5px solid var(--border); border-radius: var(--radius);
+    padding: 1.25rem; box-shadow: var(--shadow); transition: transform .2s;
+  }
+  .skill-card:hover { transform: translateY(-3px); }
+  .skill-card-header { display: flex; align-items: center; gap: .6rem; margin-bottom: .75rem; }
+  .skill-icon { font-size: 1.4rem; }
+  .skill-card h3 { font-size: .9rem; font-weight: 700; }
+  .skill-chips { display: flex; flex-wrap: wrap; gap: .35rem; }
+  .skill-chip {
+    font-size: .75rem; padding: .25rem .65rem; border-radius: 999px; font-weight: 500;
+    border: 1.5px solid;
+  }
+  .chip-purple { background: #f0f0ff; border-color: #c4c0ff; color: var(--accent1); }
+  .chip-pink { background: #fff0f4; border-color: #ffbfcc; color: #e63c5a; }
+  .chip-green { background: #f0fff9; border-color: #a0f0dc; color: #0d9e7a; }
+  .chip-yellow { background: #fffbf0; border-color: #ffe099; color: #92600a; }
+
+  /* EDUCATION */
+  .edu-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 1.5rem; }
+  .edu-card {
+    background: white; border: 1.5px solid var(--border); border-radius: var(--radius);
+    padding: 1.5rem; box-shadow: var(--shadow); position: relative; overflow: hidden; transition: transform .2s;
+  }
+  .edu-card:hover { transform: translateY(-3px); }
+  .edu-card::before {
+    content: ''; position: absolute; top: 0; left: 0; right: 0; height: 4px;
+    background: linear-gradient(90deg, var(--accent1), var(--accent2));
+  }
+  .edu-icon { font-size: 2rem; margin-bottom: .75rem; }
+  .edu-degree { font-family: 'Space Grotesk', sans-serif; font-size: 1rem; font-weight: 700; margin-bottom: .3rem; }
+  .edu-uni { color: var(--accent1); font-weight: 600; font-size: .875rem; margin-bottom: .25rem; }
+  .edu-date { font-size: .8rem; color: var(--muted); margin-bottom: .5rem; }
+  .edu-courses { font-size: .8rem; color: #4b5563; background: #f9fafb; border-radius: 8px; padding: .75rem; margin-top: .5rem; border: 1px solid #f3f4f6; }
+
+  /* FOOTER */
+  footer {
+    background: var(--text); color: #9ca3af; text-align: center;
+    padding: 2rem; font-size: .875rem;
+  }
+  footer .footer-inner { max-width: 600px; margin: 0 auto; }
+  footer .footer-name { color: white; font-weight: 700; font-family: 'Space Grotesk', sans-serif; font-size: 1.1rem; margin-bottom: .5rem; }
+  footer .footer-links { display: flex; justify-content: center; gap: 1.5rem; margin-bottom: .75rem; }
+  footer a { color: var(--accent3); text-decoration: none; font-weight: 500; font-size: .85rem; }
+  footer a:hover { color: var(--accent4); }
+
+  /* SECTION WRAPPERS */
+  .section-wrap { max-width: 1000px; margin: 0 auto; padding: 5rem 2rem; }
+
+  @media (max-width: 640px) {
+    nav { padding: 0 1rem; }
+    .nav-links { gap: .75rem; }
+    .about-grid { grid-template-columns: 1fr; }
+    .pub-card { flex-direction: column; }
+    .pub-badge { align-self: flex-start; }
+  }
+</style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav>
+  <div class="nav-logo">MK ✦</div>
+  <ul class="nav-links">
+    <li><a href="#about">About</a></li>
+    <li><a href="#experience">Experience</a></li>
+    <li><a href="#projects">Projects</a></li>
+    <li><a href="#publications">Research</a></li>
+    <li><a href="#skills">Skills</a></li>
+    <li><a href="#education">Education</a></li>
+  </ul>
+</nav>
+
+<!-- HERO -->
+<section class="hero">
+  <div class="hero-inner">
+    <div class="hero-badge">Available for new opportunities</div>
+    <div class="avatar-wrap">MK</div>
+    <h1>Mohan Kumar<br><span>AI Engineer</span></h1>
+    <p class="hero-sub">Published researcher · 3+ years building production-grade AI systems</p>
+    <div class="hero-tags">
+      <span class="tag tag-purple">🤖 Generative AI</span>
+      <span class="tag tag-pink">🧬 Computational Genomics</span>
+      <span class="tag tag-green">⚡ MLOps</span>
+      <span class="tag tag-yellow">🔬 Deep Learning Research</span>
+    </div>
+    <div class="hero-actions">
+      <a href="https://www.linkedin.com/in/mohan-kumar-753848172/" target="_blank" class="btn btn-primary">💼 LinkedIn</a>
+      <a href="https://github.com/mohankumarbc920" target="_blank" class="btn btn-outline">🐙 GitHub</a>
+      <a href="mailto:mbaleath@uccs.edu" class="btn btn-outline">✉️ Email Me</a>
+    </div>
+  </div>
+</section>
+
+<!-- ABOUT -->
+<div class="section-wrap" id="about">
+  <div style="background:white;border-radius:24px;padding:2.5rem;box-shadow:var(--shadow);">
+    <div class="section-header">
+      <div class="section-label">About Me</div>
+      <h2 class="section-title">Building the Future with AI 🚀</h2>
+    </div>
+    <p class="lead-text">AI Engineer and published researcher with <strong>3+ years</strong> of experience advancing multimodal and generative AI systems. I specialize in translating complex research into deployable, high-performing AI solutions that drive measurable impact in production environments.</p>
+    <div class="about-grid">
+      <div class="about-card">
+        <div class="about-card-icon">🎓</div>
+        <div>
+          <h4>MS Computer Science</h4>
+          <p>University of Colorado, Colorado Springs — specializing in AI, Computational Linguistics & Data Mining</p>
+        </div>
+      </div>
+      <div class="about-card">
+        <div class="about-card-icon">📄</div>
+        <div>
+          <h4>Published Researcher</h4>
+          <p>Published in Oxford Bioinformatics Journal at ISMB/ECCB 2025 — state-of-the-art genomics results</p>
+        </div>
+      </div>
+      <div class="about-card">
+        <div class="about-card-icon">🏗️</div>
+        <div>
+          <h4>Production AI Systems</h4>
+          <p>Expert in Docker, Kubernetes, MLflow and CI/CD — reduced deployment cycles by 30% at L&T Technology Services</p>
+        </div>
+      </div>
+      <div class="about-card">
+        <div class="about-card-icon">🧠</div>
+        <div>
+          <h4>Deep Learning Architect</h4>
+          <p>Transformers, diffusion models, GATs, multimodal learning, and GPU-accelerated pipeline optimization</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- EXPERIENCE -->
+<div class="section-wrap" id="experience">
+  <div class="section-header">
+    <div class="section-label">Experience</div>
+    <h2 class="section-title">Where I've Worked 💼</h2>
+  </div>
+  <div class="timeline">
+
+    <div class="exp-item">
+      <div class="exp-card">
+        <div class="exp-header">
+          <div>
+            <div class="exp-title">Research & Development Intern</div>
+            <div class="exp-org">Rabid Troll Studios LLC</div>
+          </div>
+          <span class="exp-date">Aug 2025 – Present</span>
+        </div>
+        <ul>
+          <li>Engineered an AI planner within the game system to dynamically guide players, enhancing strategic understanding and game comprehension.</li>
+          <li>Designed data collection frameworks and performed statistical analysis of player behavior and UX metrics using Python.</li>
+          <li>Built and evaluated interactive game prototypes using Unity and C# to assess engagement, usability, and player impact.</li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="exp-item">
+      <div class="exp-card">
+        <div class="exp-header">
+          <div>
+            <div class="exp-title">Graduate Research Assistant</div>
+            <div class="exp-org">University of Colorado, Colorado Springs</div>
+          </div>
+          <span class="exp-date">Jan 2024 – May 2025</span>
+        </div>
+        <ul>
+          <li>Developed and optimized multimodal AI pipelines (PyTorch/TensorFlow) for large-scale genomic imaging, achieving +5% PSNR and +8% SSIM via diffusion-inspired degradation learning.</li>
+          <li>Deployed production-ready AI workflows using Docker, Kubernetes, MLflow, and automated data/model versioning.</li>
+          <li>Engineered a scalable Graph Attention Network (GAT) architecture, outperforming baseline dSCC by 3% with GPU efficiency and low memory footprint.</li>
+          <li>Contributed to open-source AI tooling — model optimization, inference speed-ups, custom data loaders across multiple projects.</li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="exp-item">
+      <div class="exp-card">
+        <div class="exp-header">
+          <div>
+            <div class="exp-title">Software Engineer</div>
+            <div class="exp-org">L&T Technology Services, India</div>
+          </div>
+          <span class="exp-date">Sep 2020 – Aug 2023</span>
+        </div>
+        <ul>
+          <li>Developed C#/.NET and Python-based automation systems powering smart meter workflows, including inference-driven diagnostics and anomaly detection.</li>
+          <li>Improved deployment speed by 30% through CI/CD automation, test coverage expansion, and environment provisioning.</li>
+          <li>Led debugging and performance optimization across AI-adjacent systems — data ingestion, feature extraction, and downstream inference.</li>
+          <li>Created Python-based geospatial and firmware-update modules using rule-based ML preprocessing, reducing manual effort by 30%.</li>
+        </ul>
+      </div>
+    </div>
+
+  </div>
+</div>
+
+<!-- PROJECTS -->
+<div class="section-wrap" id="projects">
+  <div class="section-header">
+    <div class="section-label">Projects</div>
+    <h2 class="section-title">Selected Projects 🛠️</h2>
+  </div>
+  <div class="projects-grid">
+
+    <div class="proj-card proj-accent-1">
+      <div class="proj-icon">🖼️</div>
+      <div class="proj-title">Image Captioning with CNN & Transformer</div>
+      <div class="proj-stack">
+        <span class="stack-chip">PyTorch</span>
+        <span class="stack-chip">EfficientNet</span>
+        <span class="stack-chip">Transformers</span>
+        <span class="stack-chip">Keras</span>
+      </div>
+      <p class="proj-desc">Hybrid EfficientNet-Transformer model for image captioning using EfficientNetB1 for feature extraction and a custom Transformer decoder with attention. Achieved a 2.4% BLEU-4 improvement over baselines on Flickr8K.</p>
+    </div>
+
+    <div class="proj-card proj-accent-2">
+      <div class="proj-icon">📋</div>
+      <div class="proj-title">Automated Visual Summary Detection</div>
+      <div class="proj-stack">
+        <span class="stack-chip">TensorFlow</span>
+        <span class="stack-chip">EfficientNetB7</span>
+        <span class="stack-chip">T5-small</span>
+        <span class="stack-chip">Hugging Face</span>
+      </div>
+      <p class="proj-desc">Image summarization framework integrating EfficientNetB7 for visual features and fine-tuned T5-small for text generation. Enhanced beam search and cross-attention achieved a BLEU-4 score of 8.87 on the Stanford Image Paragraph dataset.</p>
+    </div>
+
+    <div class="proj-card proj-accent-3">
+      <div class="proj-icon">📊</div>
+      <div class="proj-title">Text Classification Service</div>
+      <div class="proj-stack">
+        <span class="stack-chip">Python</span>
+        <span class="stack-chip">scikit-learn</span>
+        <span class="stack-chip">Keras</span>
+        <span class="stack-chip">Tableau</span>
+      </div>
+      <p class="proj-desc">End-to-end text classification pipeline comparing Naive Bayes, SVMs, and neural network classifiers. Visualized model performance in Tableau to guide business decisions.</p>
+    </div>
+
+  </div>
+</div>
+
+<!-- PUBLICATIONS -->
+<div class="section-wrap" id="publications">
+  <div class="section-header">
+    <div class="section-label">Research</div>
+    <h2 class="section-title">Publications 🔬</h2>
+  </div>
+  <div class="pub-card">
+    <span class="pub-badge">ISMB/ECCB 2025</span>
+    <div>
+      <div class="pub-title">Unicorn: Enhancing Single-Cell Hi-C Data with Blind Super-Resolution for 3D Genome Structure Reconstruction</div>
+      <div class="pub-authors">Chandrashekar M. K., Menon R., Olowofila S., & Oluwadare O.</div>
+      <div class="pub-venue">Oxford Bioinformatics Journal · ISMB/ECCB 2025 Conference</div>
+      <a href="https://academic.oup.com/bioinformatics/article/41/Supplement_1/i475/8199354" target="_blank" class="pub-link">📄 Read Paper →</a>
+    </div>
+  </div>
+</div>
+
+<!-- SKILLS -->
+<div class="section-wrap" id="skills">
+  <div class="section-header">
+    <div class="section-label">Skills</div>
+    <h2 class="section-title">Technologies & Skills ⚡</h2>
+  </div>
+  <div class="skills-grid">
+
+    <div class="skill-card">
+      <div class="skill-card-header">
+        <span class="skill-icon">🤖</span>
+        <h3>AI/LLM Frameworks</h3>
+      </div>
+      <div class="skill-chips">
+        <span class="skill-chip chip-purple">PyTorch</span>
+        <span class="skill-chip chip-purple">TensorFlow</span>
+        <span class="skill-chip chip-purple">Hugging Face</span>
+        <span class="skill-chip chip-purple">T5</span>
+        <span class="skill-chip chip-purple">EfficientNet</span>
+        <span class="skill-chip chip-purple">Diffusion Models</span>
+      </div>
+    </div>
+
+    <div class="skill-card">
+      <div class="skill-card-header">
+        <span class="skill-icon">🧠</span>
+        <h3>Core ML/AI Skills</h3>
+      </div>
+      <div class="skill-chips">
+        <span class="skill-chip chip-pink">Fine-tuning</span>
+        <span class="skill-chip chip-pink">Embeddings</span>
+        <span class="skill-chip chip-pink">Multimodal Learning</span>
+        <span class="skill-chip chip-pink">Inference Optimization</span>
+        <span class="skill-chip chip-pink">Prompt Engineering</span>
+      </div>
+    </div>
+
+    <div class="skill-card">
+      <div class="skill-card-header">
+        <span class="skill-icon">⚙️</span>
+        <h3>MLOps & Systems</h3>
+      </div>
+      <div class="skill-chips">
+        <span class="skill-chip chip-green">Docker</span>
+        <span class="skill-chip chip-green">Kubernetes</span>
+        <span class="skill-chip chip-green">MLflow</span>
+        <span class="skill-chip chip-green">DVC</span>
+        <span class="skill-chip chip-green">FastAPI</span>
+        <span class="skill-chip chip-green">GitHub Actions</span>
+        <span class="skill-chip chip-green">Jenkins</span>
+      </div>
+    </div>
+
+    <div class="skill-card">
+      <div class="skill-card-header">
+        <span class="skill-icon">💻</span>
+        <h3>Programming Languages</h3>
+      </div>
+      <div class="skill-chips">
+        <span class="skill-chip chip-yellow">Python</span>
+        <span class="skill-chip chip-yellow">C#</span>
+        <span class="skill-chip chip-yellow">Java</span>
+        <span class="skill-chip chip-yellow">SQL</span>
+        <span class="skill-chip chip-yellow">C++</span>
+        <span class="skill-chip chip-yellow">JavaScript</span>
+      </div>
+    </div>
+
+  </div>
+</div>
+
+<!-- EDUCATION -->
+<div class="section-wrap" id="education">
+  <div class="section-header">
+    <div class="section-label">Education</div>
+    <h2 class="section-title">Education 🎓</h2>
+  </div>
+  <div class="edu-grid">
+
+    <div class="edu-card">
+      <div class="edu-icon">🏔️</div>
+      <div class="edu-degree">Master of Science in Computer Science</div>
+      <div class="edu-uni">University of Colorado, Colorado Springs</div>
+      <div class="edu-date">Aug 2023 – May 2025</div>
+      <div class="edu-courses"><strong>Courses:</strong> Artificial Intelligence, Computational Linguistics, Data Mining, Data Visualization, Data Structures & Algorithms</div>
+    </div>
+
+    <div class="edu-card">
+      <div class="edu-icon">🇮🇳</div>
+      <div class="edu-degree">Bachelor of Engineering in Computer Science</div>
+      <div class="edu-uni">Visvesvaraya Technological University, Bengaluru, India</div>
+      <div class="edu-date">Aug 2015 – Jun 2019</div>
+    </div>
+
+  </div>
+</div>
+
+<!-- FOOTER -->
+<footer>
+  <div class="footer-inner">
+    <div class="footer-name">Mohan Kumar ✦ AI Engineer</div>
+    <div class="footer-links">
+      <a href="https://www.linkedin.com/in/mohan-kumar-753848172/" target="_blank">LinkedIn</a>
+      <a href="https://github.com/mohankumarbc920" target="_blank">GitHub</a>
+      <a href="mailto:mbaleath@uccs.edu">Email</a>
+      <a href="https://academic.oup.com/bioinformatics/article/41/Supplement_1/i475/8199354" target="_blank">Publication</a>
+    </div>
+    <p>© 2025 Mohan Kumar. All rights reserved.</p>
+  </div>
+</footer>
+
+</body>
+</html>
